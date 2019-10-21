@@ -1,1 +1,1 @@
-# automationpractice-codeceptjs
+# Codeceptjs-skeleton
