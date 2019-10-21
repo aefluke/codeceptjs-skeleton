@@ -1,15 +1,17 @@
 {
-  "name": "codeceptjs-helloworld",
+  "name": "codeceptjs-skeleton",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx codeceptjs run --steps"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "codeceptjs": "^2.2.1"
+    "chai": "^4.2.0",
+    "codeceptjs": "^2.3.2",
+    "puppeteer": "^1.19.0"
   }
 }

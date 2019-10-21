@@ -1,5 +1,5 @@
 
-type ICodeceptCallback = (i?: CodeceptJS.I, current?:any, ...args: any) => void;
+type ICodeceptCallback = (i?: CodeceptJS.I, current?:any, xPage?:CodeceptJS.xPage, ...args: any) => void;
 
 declare class FeatureConfig {
   retry(times: number): FeatureConfig
@@ -57,7 +57,7 @@ declare class Recorder {
   errHandler(fn: CallableFunction): void
   reset(): void
   session: RecorderSession
-  add(taskName, fn?: CallableFunction, force?: boolean, retry?: boolean): Promise<any>
+  add(taskName: string, fn?: CallableFunction, force?: boolean, retry?: boolean): Promise<any>
   retry(opts: Object): Promise<any>
   catch(customErrFn: CallableFunction): Promise<any>
   catchWithoutStop(customErrFn: CallableFunction ): Promise<any>
@@ -70,11 +70,11 @@ declare class Recorder {
   scheduled(): string[]
   toString(): string
   add(hookName: string, fn: CallableFunction, force?: boolean): void
-  catch(customErrFn: CallableFunction)
+  catch(customErrFn: CallableFunction): void
 }
 
 declare class CodeceptJSEvent {
-  dispatcher: EventEmitter
+  dispatcher: NodeJS.EventEmitter
   test: {
     started: string
     before: string
@@ -108,7 +108,7 @@ declare class CodeceptJSEvent {
     before: string,
     after: string,
   }
-  emit(event: string, param: string)
+  emit(event: string, param: string): void
   cleanDispatcher(): void
 }
 
@@ -249,6 +249,7 @@ declare function AfterSuite(callback: ICodeceptCallback): void;
 
 declare function inject(): {
   I: CodeceptJS.I
+  xPage: CodeceptJS.xPage
 };
 declare function locate(selector: LocatorOrString): Locator;
 declare function within(selector: LocatorOrString, callback: Function): Promise<any>;
@@ -368,8 +369,17 @@ declare namespace CodeceptJS {
     grabDataFromPerformanceTiming() : Promise<string>,
     debug(msg: string) : void,
     debugSection(section: string, msg: string) : void,
+    login(username: string, password: string) : void,
+    logout() : void,
+    amSignedIn(username: string) : void,
+    waitForLoading() : void,
     say: () => any; 
     retryStep(opts: string) : void,
+
+  }
+
+  export interface xPage {
+    go() : void,
 
   }
 
