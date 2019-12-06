@@ -4,8 +4,9 @@ exports.config = {
   output: './output',
   helpers: {
     Puppeteer: {
-      url: 'http://sut.com',
+      url: 'http://www.trendyol.com',
       show: true,
+      restart: false,
       chrome: {
         args: ['--no-sandbox', '--window-size=1440,900']
       },
@@ -13,15 +14,19 @@ exports.config = {
       waitForNavigation: ['domcontentloaded', 'networkidle0'],
       waitForTimeout: 10000,
       waitForAction: 500,
-      restart: false,
     }
   },
   include: {
     I: './steps_file.js',
-    xPage: './pages/x.js',
+    homePage: './pages/home.js',
   },
   bootstrap: './hooks/bootstrap.js',
-  mocha: {},
+  mocha: {
+    "reporterOptions": {
+      "reportDir": "output",
+      "inline": true,
+    }
+  },
   plugins: {
     autoLogin: {
       enabled: true,
@@ -48,7 +53,7 @@ exports.config = {
       'enabled': true
     },
     'stepByStepReport': {
-      'enabled': true,
+      'enabled': false,
       'screenshotsForAllureReport': true
     }
   }

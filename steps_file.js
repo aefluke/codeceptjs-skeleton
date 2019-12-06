@@ -1,6 +1,3 @@
-
-// in this file you can append custom step methods to 'I' object
-
 module.exports = function () {
   return actor({
 
@@ -16,14 +13,9 @@ module.exports = function () {
     },
 
     amSignedIn(username) {
-      
+
       this.amOnPage('/');
       this.see(username);
     },
-
-    waitForLoading(){
-
-    }
-
   });
 }
