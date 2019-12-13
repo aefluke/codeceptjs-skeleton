@@ -12,6 +12,6 @@ Scenario('Search for an item', async (I, homePage) => {
     homePage.selectGender("ERKEK");
     homePage.searchFor("iphone");
     I.seeInTitle("Tüm Ürünler - Trendyol");
-    I.see("\"iphone\" araması içiş");
+    I.see("\"iphone\" araması için");
 });
 
